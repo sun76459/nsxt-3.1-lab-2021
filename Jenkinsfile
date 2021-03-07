@@ -1,5 +1,6 @@
 stage('init') {
     node {
+        bat 'dir'
         bat 'e:\\terraform\\terraform init'
     }
 }
