@@ -1,3 +1,16 @@
+terraform {
+  backend "pg" {
+    conn_str = "postgres://postgres:VMware1!@localhost/terraform_backend?sslmode=disable"
+  }
+
+  required_providers {
+    nsxt = {
+      source = "vmware/nsxt"
+    }
+  }
+  required_version = ">= 0.13"
+}
+
 provider "nsxt" {
   host                  = "192.168.110.201"
   username              = "admin"
@@ -66,11 +79,13 @@ resource "nsxt_policy_segment" "db-seg" {
 */
 
 resource "nsxt_policy_tier1_gateway" "test1" {
-  display_name    = "test1"
   nsx_id          = "test1"
+  display_name    = "test1"
 }
 
 
 resource "nsxt_policy_tier1_gateway" "test2" {
+  nsx_id          = "test2"
   display_name    = "test2"
+
 }
