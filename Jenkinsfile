@@ -1,3 +1,10 @@
+stage('checkout') {
+    node {
+        cleanWs()
+        checkout scm
+    }
+}
+
 stage('init') {
     node {
         bat 'whoami'
