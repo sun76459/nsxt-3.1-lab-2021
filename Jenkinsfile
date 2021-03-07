@@ -1,28 +1,11 @@
-pipeline {
-    agent any
-    stages {
-        stage("init") {
-            steps {
-                echo 'init...'
-            }
-        }
+stage('init') {
+    node {
+        bat 'e:\\terraform\\terraform init'
+    }
+}
 
-        stage("plan") {
-            steps {
-                echo 'plan...'
-            }
-        }
-
-        stage("apply") {
-            steps {
-                echo 'apply...'
-            }
-        }
-
-        stage("show") {
-            steps {
-                echo 'show...'
-            }
-        }
+stage('plan') {
+    node {
+        bat 'e:\\terraform\\terraform plan'
     }
 }
