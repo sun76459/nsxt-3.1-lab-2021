@@ -89,7 +89,3 @@ resource "nsxt_policy_tier1_gateway" "test2" {
   display_name    = "test2"
 }
 
-resource "nsxt_policy_tier1_gateway" "test3" {
-  nsx_id          = "test3"
-  display_name    = "test3"
-}
