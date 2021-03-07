@@ -10,12 +10,26 @@ stage('init') {
         bat 'whoami'
         bat 'set'
         bat 'dir'
-        bat 'e:\\terraform\\terraform init'
+        bat 'terraform init'
     }
 }
 
 stage('plan') {
     node {
-        bat 'e:\\terraform\\terraform plan'
+        bat 'terraform plan'
+    }
+}
+
+if (env.BRANCH_NAME) == 'main') {
+    stage('apply') {
+        node {
+            bat 'terraform apply -auto-approve'
+        }
+    }
+
+    stage('show') {
+        node {
+            bat 'terraform show'
+        }
     }
 }
