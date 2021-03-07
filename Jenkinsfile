@@ -27,15 +27,17 @@ stage('plan') {
 if ((env.BRANCH_NAME) == 'main') {
     stage('apply') {
         node {
-        ansiColor('xterm') {
-            bat 'terraform apply -auto-approve'
+            ansiColor('xterm') {
+                bat 'terraform apply -auto-approve'
+            }
         }
     }
 
     stage('show') {
         node {
-        ansiColor('xterm') {
-            bat 'terraform show'
+            ansiColor('xterm') {
+                bat 'terraform show'
+            }
         }
     }
 }
