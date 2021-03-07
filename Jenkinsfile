@@ -8,10 +8,9 @@ stage('checkout') {
 stage('init') {
     node {
         ansiColor('xterm') {
-            bat 'whoami'
             bat 'set'
             bat 'dir'
-            bat 'terraform init'
+            bat 'cd lab && terraform init'
         }
     }
 }
@@ -19,7 +18,7 @@ stage('init') {
 stage('plan') {
     node {
         ansiColor('xterm') {
-            bat 'terraform plan'
+            bat 'cd lab && terraform plan'
         }
     }
 }
@@ -28,7 +27,7 @@ if ((env.BRANCH_NAME) == 'main') {
     stage('apply') {
         node {
             ansiColor('xterm') {
-                bat 'terraform apply -auto-approve'
+                bat 'cd lab && terraform apply -auto-approve'
             }
         }
     }
@@ -36,7 +35,7 @@ if ((env.BRANCH_NAME) == 'main') {
     stage('show') {
         node {
             ansiColor('xterm') {
-                bat 'terraform show'
+                bat 'cd lab && terraform show'
             }
         }
     }
