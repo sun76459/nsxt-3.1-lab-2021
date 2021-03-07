@@ -2,19 +2,27 @@ pipeline {
     agent any
     stages {
         stage("init") {
-            echo 'init...'
+            steps {
+                echo 'init...'
+            }
         }
 
         stage("plan") {
-            echo 'plan...'
+            steps {
+                echo 'plan...'
+            }
         }
 
         stage("apply") {
-            echo 'apply...'
+            steps {
+                echo 'apply...'
+            }
         }
 
         stage("show") {
-            echo 'show...'
+            steps {
+                echo 'show...'
+            }
         }
     }
 }
