@@ -1,0 +1,49 @@
+
+stage('checkout') {
+  node {
+    cleanWs()
+    checkout scm
+  }
+}
+
+stage('init') {
+  node {
+    ansiColor('xterm') {
+      sh 'cd Site1a && terraform init'
+      sh 'cd Site1b && terraform init'
+      sh 'cd Site2a && terraform init'
+    }  
+  }
+}
+
+stage('Plan') {
+  node {
+    ansiColor('xterm') {
+      sh 'cd Site1a && terraform plan'
+      sh 'cd Site1b && terraform plan'
+      sh 'cd Site2a && terraform plan'            
+    }
+  }
+}
+if (env.BRANCH_NAME == 'master') {
+  // Run terraform apply
+  stage('apply') {
+    node {
+      ansiColor('xterm') {  
+        sh 'cd Site1a && terraform apply -auto-approve'
+        sh 'cd Site1b && terraform apply -auto-approve'
+        sh 'cd Site2a && terraform apply -auto-approve'
+      }
+    }
+  }
+  // Run terraform show
+  stage('show') {
+    node {
+      ansiColor('xterm') {
+        sh 'cd Site1a && terraform show'
+        sh 'cd Site1b && terraform show'
+        sh 'cd Site2a && terraform show'
+      }
+    }
+  }
+}
