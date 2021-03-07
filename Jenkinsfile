@@ -20,7 +20,7 @@ stage('plan') {
     }
 }
 
-if (env.BRANCH_NAME) == 'main') {
+if ((env.BRANCH_NAME) == 'main') {
     stage('apply') {
         node {
             bat 'terraform apply -auto-approve'
