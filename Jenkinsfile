@@ -6,36 +6,30 @@ if ((env.BRANCH_NAME) == 'main') {
         }
     }
 
-    stage('init') {
-        node {
-            ansiColor('xterm') {
+    ansiColor('xterm') {
+        stage('init') {
+            node {
                 bat 'set'
                 bat 'dir'
-                bat 'cd lab && terraform init'
+                bat 'cd terraform && terraform init'
             }
         }
-    }
 
-    stage('plan') {
-        node {
-            ansiColor('xterm') {
-                bat 'cd lab && terraform plan'
+        stage('plan') {
+            node {
+                bat 'cd terraform && terraform plan'
             }
         }
-    }
 
-    stage('apply') {
-        node {
-            ansiColor('xterm') {
-                bat 'cd lab && terraform apply -auto-approve'
+        stage('apply') {
+            node {
+                bat 'cd terraform && terraform apply -auto-approve'
             }
         }
-    }
 
-    stage('show') {
-        node {
-            ansiColor('xterm') {
-                bat 'cd lab && terraform show'
+        stage('show') {
+            node {
+                bat 'cd terraform && terraform show'
             }
         }
     }
