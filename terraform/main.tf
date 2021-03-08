@@ -1,6 +1,6 @@
 terraform {
   backend "pg" {
-    conn_str = "postgres://postgres:VMware1!@localhost/terraform_backend?sslmode=disable"
+    conn_str = var.pg_conn_str
   }
 
   required_providers {
@@ -12,8 +12,8 @@ terraform {
 }
 
 provider "nsxt" {
-  host                  = "192.168.110.201"
-  username              = "admin"
+  host                  = var.nsx_manager
+  username              = var.nsx_username
   password              = var.nsx_password
   allow_unverified_ssl  = true
   max_retries           = 10
