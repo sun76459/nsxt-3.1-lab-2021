@@ -1,6 +1,3 @@
-variable "pg_conn_str" {
-    default = "postgres://postgres:VMware1!@localhost/terraform_backend?sslmode=disable"
-}
 variable "nsx_manager" {
     default = "192.168.110.201"
 }

@@ -1,6 +1,6 @@
 terraform {
   backend "pg" {
-    conn_str = var.pg_conn_str
+    conn_str = "postgres://postgres:VMware1!@localhost/terraform_backend?sslmode=disable"
   }
 
   required_providers {
