@@ -6,9 +6,7 @@ pipeline {
     stages {
         stage("init") {
             when {
-                expression {
-                    BRANCH_NAME == "main"
-                }
+                branch 'main'
             }
             steps {
                 bat 'set'
@@ -19,9 +17,7 @@ pipeline {
 
         stage("plan") {
             when {
-                expression {
-                    BRANCH_NAME == "main"
-                }
+                branch 'main'
             }
             steps {
                 bat 'cd terraform && terraform plan'
@@ -30,9 +26,7 @@ pipeline {
 
         stage("apply") {
             when {
-                expression {
-                    BRANCH_NAME == "main"
-                }
+                branch 'main'
             }
             steps {
                 bat 'cd terraform && terraform apply -auto-approve'
@@ -41,9 +35,7 @@ pipeline {
 
         stage("show") {
             when {
-                expression {
-                    BRANCH_NAME == "main"
-                }
+                branch 'main'
             }
             steps {
                 bat 'cd terraform && terraform show'
